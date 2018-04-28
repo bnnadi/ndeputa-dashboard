@@ -8,6 +8,8 @@ function ascendingSort(employee1, employee2) {
 
 const employeeActions = {
   FETCH_EMPLOYEES: 'FETCH_EMPLOYEES',
+  FETCH_SUCCESS: 'FETCH_SUCCESS',
+  FETCH_ERROR: 'FETCH_ERROR',
   ADD_EMPLOYEE: 'ADD_EMPLOYEE',
   EDIT_EMPLOYEE: 'EDIT_EMPLOYEE',
   DELETE__EMPLOYEE: 'DELETE__EMPLOYEE',
@@ -17,23 +19,13 @@ const employeeActions = {
     type: employeeActions.CHANGE_EMPLOYEE,
     id,
   }),
-  fetchEmployee: () => {
-    return (dispatch, getState) => {
-      dispatch({
-        type: employeeActions.FETCH_EMPLOYEES,
-        employees: [...getState().Employees.get('employees')],
-      });
-    };
-  },
-  addEmployee: (newEmployee) => {
-    return (dispatch, getState) => {
-      dispatch({
-        type: employeeActions.ADD_EMPLOYEE,
-        employees: [...getState().Employees.get('employees'), newEmployee],
-        selectedId: newEmployee.id,
-      });
-    };
-  },
+  fetchEmployees: () => ({
+    type: employeeActions.FETCH_EMPLOYEES,
+  }),
+  addEmployee: (newEmployee) => ({
+    type: employeeActions.ADD_EMPLOYEE,
+    employee: newEmployee,
+  }),
   editEmployee: (employee) => {
     return (dispatch, getState) => {
       const employees = getState().Employees.get('employees');

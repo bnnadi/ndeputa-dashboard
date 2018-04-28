@@ -13,6 +13,12 @@ export default function asyncComponent(importComponent) {
         component: null,
       };
     }
+    componentDidCatch(error, info) {
+      // Display fallback UI
+      // this.setState({ component: true });
+      // You can also log the error to an error reporting service
+      Log.error(error, info);
+    }
     componentWillMount() {
       Nprogress.start();
     }
@@ -20,7 +26,6 @@ export default function asyncComponent(importComponent) {
       this.mounted = false;
     }
     async componentDidMount() {
-      Log.info(this.props,'AsyncComponent')
       this.mounted = true;
       const { default: Component } = await importComponent();
       Nprogress.done();

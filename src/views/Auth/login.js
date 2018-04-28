@@ -45,7 +45,7 @@ class LogIn extends Component {
       }
     }
     render() {
-        const from = { pathname: '/' };
+        const from = { pathname: '/dashboard' };
         const { redirectToReferrer } = this.state;
 
         if (redirectToReferrer) {

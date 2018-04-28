@@ -25,10 +25,6 @@ const options = [
           {
             key: "checkout",
             label: "sidebar.checkout"
-          },
-          {
-            key: "card",
-            label: "sidebar.cards"
           }
         ]
       },

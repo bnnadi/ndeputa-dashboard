@@ -32,7 +32,7 @@ export function getDefaultPath() {
     return parent;
   };
   if (window && window.location.pathname) {
-    const routes = window.location.pathname.split('/');
+    const routes = window.location.pathname.split();
     if (routes.length > 1) {
       const lastRoute = routes[routes.length - 1];
       return getParent(lastRoute);

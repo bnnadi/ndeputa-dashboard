@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { connect } from 'react-redux';
 
@@ -16,7 +16,7 @@ const RestrictedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
 const PublicRoutes = ({ history, isLoggedIn }) => {
   return (
      <ConnectedRouter history={history}>
-      <Switch>
+      <div>
         <Route
           exact
           path={'/login'}
@@ -43,11 +43,11 @@ const PublicRoutes = ({ history, isLoggedIn }) => {
           component={asyncComponent(() => import('./views/Auth/resetPassword'))}
         />
         <RestrictedRoute
-          path="/"
+          path='/dashboard'
           component={App}
           isLoggedIn={isLoggedIn}
         />
-      </Switch>
+      </div>
     </ConnectedRouter>
   )
 }

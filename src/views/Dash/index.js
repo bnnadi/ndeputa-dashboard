@@ -1,19 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Layout } from 'antd';
-import { NoteWrapper } from './note.style';
+import { DashboardWrapper } from './dashboard.style';
 
 const { Content } = Layout;
-class Notes extends Component {
+class Dash extends Component {
     render() {
         return(
-        <NoteWrapper>
-        <div style={{ width: "340px" }}>
-        </div>
+        <DashboardWrapper>
          <Layout>
-            <Content>Hello From Note!</Content>
+         <Content>Hello World!</Content>
          </Layout>
-        </NoteWrapper>
+        </DashboardWrapper>
         );
     }
 }
@@ -21,4 +19,4 @@ class Notes extends Component {
 export default connect(
     state => ({}),
     {}
-)(Notes);
+)(Dash);

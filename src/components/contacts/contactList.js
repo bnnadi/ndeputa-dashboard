@@ -7,6 +7,7 @@ import { ContactListWrapper } from './contactList.style';
 import Scrollbar from '../utility/customScrollBar';
 
 function filterContacts(contacts, search) {
+  console.log(contacts);
   search = search.toUpperCase();
   return search
     ? contacts.filter(contact => contact.name.toUpperCase().includes(search))

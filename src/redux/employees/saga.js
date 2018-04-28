@@ -1,15 +1,93 @@
-import { all, takeEvery, fork } from 'redux-saga/effects';
-import actions from './actions';
+import { all, call, takeEvery, put } from 'redux-saga/effects';
+import employeeActions from './actions';
+import employeeService from '../../services/employee';
+import Log from '../../helpers/Log';
 
-export function* addEmployee() {
-  yield takeEvery(actions.ADD_EMPLOYEE, function*() {});
+function* fetchEmployees() {
+  Log.info('fetching..', 'employee saga')
+  try {
+    const result = yield call(employeeService.getEmployees);
+    Log.info(result, 'Employee Fetch');
+    yield put({
+      type: employeeActions.FETCH_SUCCESS,
+      employees: result,
+    });
+  } catch (e) {
+    Log.error(e, 'Fetch employee Error');
+    yield put({
+      type: employeeActions.FETCH_ERROR,
+      e
+    });
+  };
 }
-export function* editEmployee() {
-  yield takeEvery(actions.EDIT_EMPLOYEE, function*() {});
+
+function* getEmployee() {
+  try {
+    const result = yield call(employeeService.getEmployee);
+    yield put({
+      type: employeeActions.FETCH_SUCCESS,
+      employees: result,
+    });
+  } catch (e) {
+    Log.error(e, 'Fetch employee Error');
+    yield put({
+      type: employeeActions.FETCH_ERROR,
+      e
+    });
+  };
 }
-export function* deleteEmployee() {
-  yield takeEvery(actions.DELETE__EMPLOYEE, function*() {});
+
+function* addEmployee() {
+  try {
+    const result = yield call(employeeService.addEmployee);
+    yield put({
+      type: employeeActions.FETCH_SUCCESS,
+      employees: result,
+    });
+  } catch (e) {
+    Log.error(e, 'Fetch employee Error');
+    yield put({
+      type: employeeActions.FETCH_ERROR,
+      e
+    });
+  };
+}
+function* editEmployee() {
+  try {
+    const result = yield call(employeeService.updateEmployee);
+    yield put({
+      type: employeeActions.FETCH_SUCCESS,
+      employees: result,
+    });
+  } catch (e) {
+    Log.error(e, 'Fetch employee Error');
+    yield put({
+      type: employeeActions.FETCH_ERROR,
+      e
+    });
+  };
+}
+function* deleteEmployee(payload) {
+  try {
+    const result = yield call(employeeService.deleteEmployee);
+    yield put({
+      type: employeeActions.FETCH_SUCCESS,
+      employees: result,
+    });
+  } catch (e) {
+    Log.error(e, 'Fetch employee Error');
+    yield put({
+      type: employeeActions.FETCH_ERROR,
+      e
+    });
+  };
 }
 export default function* rootSaga() {
-  yield all([fork(addEmployee), fork(editEmployee), fork(deleteEmployee)]);
+  yield all([
+    takeEvery('FETCH_EMPLOYEES', fetchEmployees),
+    takeEvery('CHANGE_EMPLOYEE', getEmployee),
+    takeEvery('ADD_EMPLOYEE', addEmployee),
+    takeEvery('EDIT_EMPLOYEE', editEmployee),
+    takeEvery('DELETE__EMPLOYEE', deleteEmployee)
+  ]);
 }

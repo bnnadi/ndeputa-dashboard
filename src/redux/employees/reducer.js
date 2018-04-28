@@ -2,13 +2,15 @@ import { Map } from "immutable";
 import employeeActions from "./actions";
 
 const initState = new Map({
-  employees: [],
+  employees: null,
   seectedId: null,
   editView: false
 });
 
 export default function employeeReducer(state = initState, action) {
   switch (action.type) {
+    case employeeActions.FETCH_SUCCESS:
+      return state.set("employees", action.employees)
     case employeeActions.CHANGE_EMPLOYEE:
       return state.set("seectedId", action.id).set("editView", false);
     case employeeActions.ADD_EMPLOYEE:

@@ -9,14 +9,12 @@ function* loginRequest({payload}) {
     try {
       const result = yield call(authService.login, payload)
 
-      Log.info(result, 'Login Request');
       yield put({
         type: actions.LOGIN_SUCCESS,
         user: result.user,
         token: result.token
       });
     } catch (e) {
-      Log.error(e, 'Login Request Error');
       yield put({
         type: actions.LOGIN_ERROR,
         e
@@ -25,11 +23,10 @@ function* loginRequest({payload}) {
 }
 
 function* loginSuccess(payload) {
-  Log.info(payload.token, 'Login Success token');
-  Log.info(payload.user, 'Login Success user');
     yield localStorage.setItem('token', payload.token);
-    yield localStorage.setItem('user', JSON.stringify(payload.user));
-    yield put(push('/'))
+    if(payload.user)
+      yield localStorage.setItem('user', JSON.stringify(payload.user));
+    yield put(push('/dashboard'))
 }
 
 function* loginError({payload}) {

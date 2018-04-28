@@ -14,17 +14,12 @@ import { siteConfig } from "../../config";
 import { AppLocale } from "../../ndeputaApp";
 import themes from "../../config/themes";
 import AppHolder from "./commonStyle";
-import Log from '../../helpers/Log'
 import "./global.css";
 
 const { Content, Footer } = Layout;
 const { logout } = authAction;
 const { toggleAll } = appActions;
 export class App extends Component {
-    constructor(props) {
-    super(props);
-    Log.info('Hello from App View!', 'App Component');
-  }
   render() {
     const { url } = this.props.match;
     const { locale, selectedTheme, height } = this.props;
