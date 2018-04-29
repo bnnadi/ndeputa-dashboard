@@ -3,21 +3,19 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '''#!/bin/sh <<EOF
+        sh '''#!/bin/sh
 yarn install
 yarn build
-exit
-EOF'''
+'''
       }
     }
     stage('Deploy') {
       steps {
-        sh '''#!/bin/sh <<EOF
+        sh '''#!/bin/sh 
 cp -a /dist /home/dev/ndeputa/public/
 cd /home/dev/ndeputa
 pm2 restart all
-exit
-EOF'''
+'''
       }
     }
   }
