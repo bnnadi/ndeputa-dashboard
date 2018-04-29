@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         sh '''#!/bin/sh
-yarn install --production 
+yarn install
 yarn build'''
       }
     }
