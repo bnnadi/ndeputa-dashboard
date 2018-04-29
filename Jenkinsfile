@@ -3,19 +3,24 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '''#!/bin/sh
-yarn install
-yarn build
-'''
+        echo 'Building....'
+        sh 'yarn install'
+        sh 'yarn build'
       }
     }
-    stage('Deploy') {
+    // stage('Deploy') {
+    //   steps {
+    //     echo 'Deploying....'
+    //     sh 'cp -a /dist /home/dev/ndeputa/public/'
+    //     sh 'cd /home/dev/ndeputa'
+    //     sh 'pm2 restart all'
+    //   }
+    // }
+    stage('Deliver') {
       steps {
-        sh '''#!/bin/sh 
-cp -a /dist /home/dev/ndeputa/public/
-cd /home/dev/ndeputa
-pm2 restart all
-'''
+        sh './jenkins/scripts/deliver.sh'
+        input message: 'Finished using the web site? (Click "Proceed" to continue)'
+        sh './jenkins/scripts/kill.sh'
       }
     }
   }
