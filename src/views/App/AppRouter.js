@@ -40,11 +40,19 @@ const routes = [
         component: asyncComponent(() => import('../Todo'))
     },
     {
+        path: "product/:productId",
+        component: asyncComponent(() => import('../Products/singleProduct'))
+    },
+    {
+        path: "products",
+        component: asyncComponent(() => import('../Products'))
+    },
+    {
         path: "invoice/:invoiceId",
         component: asyncComponent(() => import("../Invoice/singleInvoice"))
     },
     {
-        path: "invoice",
+        path: "invoices",
         component: asyncComponent(() => import("../Invoice"))
     },
 ];

@@ -13,23 +13,23 @@ const options = [
         key: "products",
         label: "sidebar.products",
         leftIcon: "ion-bag",
-        children: [
-          {
-            key: "shop",
-            label: "sidebar.shop"
-          },
-          {
-            key: "cart",
-            label: "sidebar.cart"
-          },
-          {
-            key: "checkout",
-            label: "sidebar.checkout"
-          }
-        ]
+        // children: [
+        //   {
+        //     key: "shop",
+        //     label: "sidebar.shop"
+        //   },
+        //   {
+        //     key: "cart",
+        //     label: "sidebar.cart"
+        //   },
+        //   {
+        //     key: "checkout",
+        //     label: "sidebar.checkout"
+        //   }
+        // ]
       },
       {
-        key: "invoice",
+        key: "invoices",
         label: "sidebar.invoice",
         leftIcon: "ion-clipboard"
       },
