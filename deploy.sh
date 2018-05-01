@@ -8,7 +8,7 @@ then
 user='nnadi'
 host= 159.65.39.38
 fi
-$ ssh $user@$host << EOF
+ssh $user@$host << EOF
 cd ndeputa/public
 git pull
 yarn install
