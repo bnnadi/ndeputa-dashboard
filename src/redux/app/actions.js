@@ -7,35 +7,43 @@ export function getView(width) {
   }
   return newView;
 }
-const actions = {
+const appActions = {
   COLLPSE_CHANGE: "COLLPSE_CHANGE",
   COLLPSE_OPEN_DRAWER: "COLLPSE_OPEN_DRAWER",
   CHANGE_OPEN_KEYS: "CHANGE_OPEN_KEYS",
   TOGGLE_ALL: "TOGGLE_ALL",
   CHANGE_CURRENT: "CHANGE_CURRENT",
+  LOADING: "LOADING",
+  SHOW_FLASH: "SHOW_FLASH",
   toggleCollapsed: () => ({
-    type: actions.COLLPSE_CHANGE
+    type: appActions.COLLPSE_CHANGE
   }),
   toggleAll: (width, height) => {
     const view = getView(width);
     const collapsed = view !== "DesktopView";
     return {
-      type: actions.TOGGLE_ALL,
+      type: appActions.TOGGLE_ALL,
       collapsed,
       view,
       height
     };
   },
   toggleOpenDrawer: () => ({
-    type: actions.COLLPSE_OPEN_DRAWER
+    type: appActions.COLLPSE_OPEN_DRAWER
   }),
   changeOpenKeys: openKeys => ({
-    type: actions.CHANGE_OPEN_KEYS,
+    type: appActions.CHANGE_OPEN_KEYS,
     openKeys
   }),
   changeCurrent: current => ({
-    type: actions.CHANGE_CURRENT,
+    type: appActions.CHANGE_CURRENT,
     current
+  }),
+  loading: () => ({
+    type: appActions.LOADING
+  }),
+  showFlash: () => ({
+    type: appActions.SHOW_FLASH
   })
 };
-export default actions;
+export default appActions;

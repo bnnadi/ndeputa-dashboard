@@ -2,7 +2,9 @@ import { all, call, takeEvery, put } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { getToken, clearToken, clearUser } from '../../helpers/utility';
 import actions from './actions';
+import appActions from '../app/actions';
 import authService from '../../services/auth';
+
 import Log from '../../helpers/Log';
 
 function* loginRequest({payload}) {
@@ -31,13 +33,15 @@ function* loginSuccess(payload) {
 
 function* loginError({payload}) {
   Log.error(payload, 'Login Error');
+  clearToken();
+  clearUser();
 }
 
 function* logout() {
     yield call(authService.logout())
     clearToken();
     clearUser();
-    yield put(push('/login'));
+    yield put(push('/'));
 
 }
 function* checkAuthorization() {

@@ -9,7 +9,7 @@ import asyncComponent from './helpers/AsyncFunc';
 const RestrictedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
   <Route
     {...rest}
-    render={props => isLoggedIn ? <Component {...props} />: <Redirect to={{ pathname: '/login', state: { from: props.location } }} />}
+    render={props => isLoggedIn ? <Component {...props} />: <Redirect to={{ pathname: '/', state: { from: props.location } }} />}
   />
 );
 
@@ -19,7 +19,7 @@ const PublicRoutes = ({ history, isLoggedIn }) => {
       <div>
         <Route
           exact
-          path={'/login'}
+          path={'/'}
           component={asyncComponent(() => import('./views/Auth/login'))}
         />
         <Route

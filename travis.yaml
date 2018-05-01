@@ -1,0 +1,16 @@
+language: node_js
+sudo: false
+node_js:
+  - "6"
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install yarn
+install:
+  - yarn install
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: bash deploy.sh $TRAVIS_BRANCH
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^development|master$
