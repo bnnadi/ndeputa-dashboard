@@ -4,6 +4,13 @@ node_js:
   - "node"
 cache:
   yarn: true
+before_install:
+  # remove default yarn
+  - sudo rm -rf $(dirname $(which yarn))/yarn*
+  # download latest
+  - rm -rf ~/.yarn
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - echo 'export PATH="${PATH}:${HOME}/.yarn/bin"' >> $BASH_ENV
 install:
   - yarn install
 deploy:
