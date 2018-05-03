@@ -54,8 +54,14 @@ function* checkAuthorization() {
       });
     }
 }
+function* authorizationError() {
+  clearToken();
+  clearUser();
+  yield put(push('/'));
+}
 export default function* rootSaga() {
   yield all([
+    takeEvery('AUTHORIZATION_ERROR',authorizationError),
     takeEvery('CHECK_AUTHORIZATION',checkAuthorization),
     takeEvery('LOGIN_REQUEST',loginRequest),
     takeEvery('LOGIN_SUCCESS',loginSuccess),

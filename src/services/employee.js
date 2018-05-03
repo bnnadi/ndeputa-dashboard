@@ -11,31 +11,31 @@ export default {
       return instance.get('employees.json')
     },
     getEmployee() {
-      return instance.get('employees.json')
+      return instance.get('employee.json')
     },
     addEmployee() {
-      return instance.post('employees.json')
+      return instance.post('employee.json')
     },
     updateEmployee() {
-      return instance.put('employees.json')
+      return instance.put('employee.json')
     },
-    addPhone() {
-      return instance.post('employees.json')
+    addPhone(id) {
+      return instance.post('employee/'+id+'/addAddress.json')
     },
-    addAddress() {
-      return instance.post('employees.json')
+    addAddress(id) {
+      return instance.post('employee/'+id+'/addAddress.json')
     },
-    updatePhone() {
-      return instance.put('employees.json')
+    updatePhone(id) {
+      return instance.put('employee/'+id+'/updateAddress.json')
     },
-    updateAddress() {
-      return instance.put('employees.json')
+    updateAddress(id) {
+      return instance.put('employee/'+id+'/updateAddress.json')
     },
-    removePhone() {
-      return instance.put('employees.json')
+    removePhone(id) {
+      return instance.put('employee/'+id+'/removeAddress.json')
     },
-    removeAddress() {
-      return instance.put('employees.json')
+    removeAddress(id) {
+      return instance.put('employee/'+id+'/removeAddress.json')
     },
     deleteEmployee(id) {
       return instance.delete('employee/'+id+'.json')

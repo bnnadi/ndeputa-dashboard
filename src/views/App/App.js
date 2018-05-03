@@ -7,6 +7,7 @@ import WindowResizeListener from "react-window-size-listener";
 import { ThemeProvider } from "styled-components";
 import authAction from "../../redux/auth/actions";
 import appActions from "../../redux/app/actions";
+import Alerts from "../../components/feedback/alert";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 import AppRouter from "./AppRouter";
@@ -22,7 +23,7 @@ const { toggleAll } = appActions;
 export class App extends Component {
   render() {
     const { url } = this.props.match;
-    const { locale, selectedTheme, height } = this.props;
+    const { locale, selectedTheme, height, flash } = this.props;
     const currentAppLocale = AppLocale[locale];
     return (
       <LocaleProvider locale={currentAppLocale.antd}>
@@ -63,6 +64,7 @@ export class App extends Component {
                     >
                       <AppRouter url={url} />
                     </Content>
+                    { (flash && flash.show) && <Alerts message={flash.message} description={flash.description} type={flash.type} showIcon /> }
                     <Footer
                       style={{
                         background: "#ffffff",
@@ -88,7 +90,8 @@ export default connect(
     auth: state.Auth,
     locale: state.LanguageSwitcher.toJS().language.locale,
     selectedTheme: state.ThemeSwitcher.toJS().changeThemes.themeName,
-    height: state.App.toJS().height
+    height: state.App.toJS().height,
+    flash: state.App.toJS().flash
   }),
   { logout, toggleAll }
 )(App);

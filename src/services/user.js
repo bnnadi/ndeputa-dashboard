@@ -13,23 +13,23 @@ export default {
     updateUser() {
       return instance.put('employee.json')
     },
-    addPhone() {
-      return instance.post('employee.json')
+    addPhone(id) {
+      return instance.post('employee/'+id+'/addAddress.json')
     },
-    addAddress() {
-      return instance.post('employee.json')
+    addAddress(id) {
+      return instance.post('employee/'+id+'/addAddress.json')
     },
-    updatePhone() {
-      return instance.put('employee.json')
+    updatePhone(id) {
+      return instance.put('employee/'+id+'/updateAddress.json')
     },
-    updateAddress() {
-      return instance.put('employee.json')
+    updateAddress(id) {
+      return instance.put('employee/'+id+'/updateAddress.json')
     },
-    removePhone() {
-      return instance.put('employee.json')
+    removePhone(id) {
+      return instance.put('employee/'+id+'/removeAddress.json')
     },
-    removeAddress() {
-      return instance.put('employee.json')
+    removeAddress(id) {
+      return instance.put('employee/'+id+'/removeAddress.json')
     },
     deleteUser(id) {
       return instance.delete('employee/'+id+'.json')

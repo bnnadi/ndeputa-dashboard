@@ -1,5 +1,6 @@
 import { all, call, takeEvery, put } from 'redux-saga/effects';
 import employeeActions from './actions';
+import appActions from '../app/actions';
 import employeeService from '../../services/employee';
 import Log from '../../helpers/Log';
 
@@ -60,7 +61,7 @@ function* editEmployee() {
       employees: result,
     });
   } catch (e) {
-    Log.error(e, 'Fetch employee Error');
+    Log.error(e.response, 'Fetch employee Error');
     yield put({
       type: employeeActions.FETCH_ERROR,
       e
@@ -82,9 +83,17 @@ function* deleteEmployee(payload) {
     });
   };
 }
+function* fetchError(payload) {
+  Log.error(payload.response.data, 'Fetch Error Method');
+  yield put({
+    type: appActions.SHOW_FLASH,
+    payload
+  })
+}
 export default function* rootSaga() {
   yield all([
     takeEvery('FETCH_EMPLOYEES', fetchEmployees),
+    takeEvery('FETCH_ERROR', fetchError),
     takeEvery('CHANGE_EMPLOYEE', getEmployee),
     takeEvery('ADD_EMPLOYEE', addEmployee),
     takeEvery('EDIT_EMPLOYEE', editEmployee),

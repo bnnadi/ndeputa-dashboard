@@ -158,7 +158,7 @@ class Invoices extends Component {
 
 function mapStateToProps(state) {
   return {
-    ...state.Invoices.toJS()
+    ...state.Invoice.toJS()
   };
 }
 export default connect(mapStateToProps, invoiceActions)(Invoices);

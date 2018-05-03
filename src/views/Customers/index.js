@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import custumerAction from "../../redux/customers/actions";
 import { Layout, Icon } from 'antd';
+import IntlMessages from "../../components/utility/intlMessages";
 import Button from '../../components/uielements/button';
 import ContactList from '../../components/contacts/contactList';
 import SingleContactView from '../../components/contacts/singleView';
@@ -60,7 +61,7 @@ class Customers extends Component {
                                 onClick={addContact}
                                 className="isoAddContactBtn"
                                 >
-                                {/* <IntlMessages id="contactlist.addNewContact" /> */}
+                                <IntlMessages id="contactlist.addNewContact" />
                                 </Button>
                             </div>
                             <Scrollbar className="contactBoxScrollbar">

@@ -16,7 +16,7 @@ install:
 deploy:
   skip_cleanup: true
   provider: script
-  script: bash deploy.sh $TRAVIS_BRANCH
+  script: deploy.sh $TRAVIS_BRANCH
   on:
     all_branches: true
     condition: $TRAVIS_BRANCH =~ ^development|master$

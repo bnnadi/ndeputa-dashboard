@@ -42,8 +42,9 @@ const appActions = {
   loading: () => ({
     type: appActions.LOADING
   }),
-  showFlash: () => ({
-    type: appActions.SHOW_FLASH
+  showFlash: flash => ({
+    type: appActions.SHOW_FLASH,
+    flash
   })
 };
 export default appActions;

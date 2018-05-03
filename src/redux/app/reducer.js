@@ -11,7 +11,10 @@ const initState = new Map({
   loading: false,
   openDrawer: false,
   openKeys: preKeys,
-  current: preKeys
+  current: preKeys,
+  flash: {
+    show:false
+  }
 });
 export default function appReducer(state = initState, action) {
   switch (action.type) {
@@ -34,6 +37,8 @@ export default function appReducer(state = initState, action) {
       return state.set("current", action.current);
     case appActions.LOADING:
       return state.set("loading", !state.get("loading"));
+    case appActions.SHOW_FLASH:
+      return state.set("flash", action.flash)
     default:
       return state;
   }
