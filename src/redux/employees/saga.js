@@ -1,5 +1,6 @@
 import { all, call, takeEvery, put } from 'redux-saga/effects';
 import employeeActions from './actions';
+import actions from '../auth/actions';
 import appActions from '../app/actions';
 import employeeService from '../../services/employee';
 import Log from '../../helpers/Log';
@@ -14,10 +15,10 @@ function* fetchEmployees() {
       employees: result,
     });
   } catch (e) {
-    Log.error(e, 'Fetch employee Error');
+    Log.error(e.message, 'Fetch employee Error');
     yield put({
       type: employeeActions.FETCH_ERROR,
-      e
+      error: e.response.data
     });
   };
 }
@@ -30,10 +31,10 @@ function* getEmployee() {
       employees: result,
     });
   } catch (e) {
-    Log.error(e, 'Fetch employee Error');
+    Log.error(e.message, 'Fetch employee Error');
     yield put({
       type: employeeActions.FETCH_ERROR,
-      e
+      error: e.response.data
     });
   };
 }
@@ -46,10 +47,10 @@ function* addEmployee() {
       employees: result,
     });
   } catch (e) {
-    Log.error(e, 'Fetch employee Error');
+    Log.error(e.message, 'Fetch employee Error');
     yield put({
       type: employeeActions.FETCH_ERROR,
-      e
+      error: e.response.data
     });
   };
 }
@@ -61,10 +62,10 @@ function* editEmployee() {
       employees: result,
     });
   } catch (e) {
-    Log.error(e.response, 'Fetch employee Error');
+    Log.error(e.message, 'Fetch employee Error');
     yield put({
       type: employeeActions.FETCH_ERROR,
-      e
+      error: e.response.data
     });
   };
 }
@@ -76,19 +77,31 @@ function* deleteEmployee(payload) {
       employees: result,
     });
   } catch (e) {
-    Log.error(e, 'Fetch employee Error');
+    Log.error(e.message, 'Fetch employee Error');
     yield put({
       type: employeeActions.FETCH_ERROR,
-      e
+      error: e.response.data
     });
   };
 }
 function* fetchError(payload) {
-  Log.error(payload.response.data, 'Fetch Error Method');
-  yield put({
-    type: appActions.SHOW_FLASH,
-    payload
-  })
+  Log.error(payload, 'Fetch Error Method');
+  if(!payload.error.isValid) {
+    yield put({
+      type: actions.AUTHORIZATION_ERROR
+    })
+  } else {
+    const flash = {
+      show: true,
+      type: 'error',
+      message: 'Fetch Error',
+      description: payload.error.message
+    };
+    yield put({
+      type: appActions.SHOW_FLASH,
+      flash
+    })
+  }
 }
 export default function* rootSaga() {
   yield all([

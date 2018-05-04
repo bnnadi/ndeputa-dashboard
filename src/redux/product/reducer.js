@@ -11,7 +11,7 @@ export default function productReducer(state = initState, action) {
     case actions.CHANGE_PRODUCT:
       return state
         .set("selectedId", action.selectedId);
-      case actions.FETCH_PRODUCT:
+    case actions.FETCH_PRODUCTS:
         return state.set("products", action.products);
     case actions.ADD_PRODUCT:
       return state

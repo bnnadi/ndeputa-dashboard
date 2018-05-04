@@ -1,13 +1,14 @@
 const productAction = {
   ADD_PRODUCT: 'ADD_PRODUCT',
   EDIT_PRODUCT: 'EDIT_PRODUCT',
-  FETCH_PRODUCT: 'FETCH_PRODUCT',
+  FETCH_PRODUCTS: 'FETCH_PRODUCTS',
   DELETE__PRODUCT: 'DELETE__PRODUCT',
+  FETCH_ERROR: 'FETCH_ERROR',
 
-  fetchProduct: () => {
+  fetchProducts: () => {
     return (dispatch, getState) => {
       dispatch({
-        type: productAction.FETCH_PRODUCT,
+        type: productAction.FETCH_PRODUCTS,
       });
     };
   },

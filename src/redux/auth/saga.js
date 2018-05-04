@@ -35,6 +35,16 @@ function* loginError({payload}) {
   Log.error(payload, 'Login Error');
   clearToken();
   clearUser();
+  const flash = {
+    show: true,
+    type: 'error',
+    message: 'Login Error',
+    description: payload.error.message
+  };
+  yield put({
+    type: appActions.SHOW_FLASH,
+    flash
+  })
 }
 
 function* logout() {
@@ -49,15 +59,28 @@ function* checkAuthorization() {
     if (token) {
       yield put({
         type: actions.LOGIN_SUCCESS,
-        token,
-        profile: 'Profile'
+        token
       });
     }
 }
 function* authorizationError() {
   clearToken();
   clearUser();
-  yield put(push('/'));
+  const flash = {
+    show: true,
+    type: 'error',
+    message: 'Authorization failed',
+    description: ''
+  };
+  yield all([
+    put({
+      type: appActions.SHOW_FLASH,
+      flash
+    }),
+    put(push('/'))
+  ])
+  // yield put();
+  // yield put(push('/'));
 }
 export default function* rootSaga() {
   yield all([
