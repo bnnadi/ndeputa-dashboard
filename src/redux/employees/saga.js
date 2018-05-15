@@ -2,7 +2,7 @@ import { all, call, takeEvery, put } from 'redux-saga/effects';
 import employeeActions from './actions';
 import actions from '../auth/actions';
 import appActions from '../app/actions';
-import employeeService from '../../services/employee';
+import {employeeService} from '../../services/employee.service';
 import Log from '../../helpers/Log';
 
 function* fetchEmployees() {

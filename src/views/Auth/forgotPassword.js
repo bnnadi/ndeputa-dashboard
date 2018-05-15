@@ -26,7 +26,7 @@ export default class extends Component {
               </p>
             </div>
 
-            <div className="isoForgotPassForm">
+            <form className="isoForgotPassForm">
               <div className="isoInputWrapper">
                 <Input size="large" placeholder="Email" />
               </div>
@@ -36,7 +36,7 @@ export default class extends Component {
                   <IntlMessages id="page.sendRequest" />
                 </Button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </ForgotPasswordStyleWrapper>

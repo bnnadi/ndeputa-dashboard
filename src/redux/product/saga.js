@@ -2,7 +2,7 @@ import { all, call, put, takeEvery, fork } from 'redux-saga/effects';
 import actions from '../auth/actions';
 import appActions from '../app/actions';
 import productAction from './actions';
-import productService from '../../services/product';
+import {productService} from '../../services/product.service';
 import Log from '../../helpers/Log';
 
 export function* fetchProducts() {

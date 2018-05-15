@@ -1,4 +1,3 @@
-import { Map } from 'immutable';
 
 export function clearToken() {
   localStorage.removeItem('token');
@@ -9,22 +8,24 @@ export function clearUser() {
 }
 
 export function getToken() {
-  try {
-    const token = localStorage.getItem('token');
-    return new Map({ token });
-  } catch (err) {
-    clearToken();
-    return new Map();
+
+  let token = JSON.parse(localStorage.getItem('token'));
+  
+  if (token) {
+    return {'x-access-token': token }
+  } else {
+    return {};
   }
 }
 
 export function getUser() {
-  try {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return new Map({ user });
-  } catch (err) {
-    clearUser();
-    return new Map();
+
+  let user = JSON.parse(localStorage.getItem('user'));
+
+  if(user) {
+    return user
+  } else {
+    return {}
   }
 }
 

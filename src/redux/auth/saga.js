@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 import { getToken, clearToken, clearUser } from '../../helpers/utility';
 import actions from './actions';
 import appActions from '../app/actions';
-import authService from '../../services/auth';
+import { authService } from '../../services/auth.service';
 
 import Log from '../../helpers/Log';
 
@@ -39,7 +39,7 @@ function* loginError({payload}) {
     show: true,
     type: 'error',
     message: 'Login Error',
-    description: payload.error.message
+    description: payload.errors
   };
   yield put({
     type: appActions.SHOW_FLASH,
@@ -55,7 +55,7 @@ function* logout() {
 
 }
 function* checkAuthorization() {
-    const token = getToken().get('token');
+    const token = getToken();
     if (token) {
       yield put({
         type: actions.LOGIN_SUCCESS,

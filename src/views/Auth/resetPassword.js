@@ -26,7 +26,7 @@ export default class extends Component {
               </p>
             </div>
 
-            <div className="isoResetPassForm">
+            <form className="isoResetPassForm">
               <div className="isoInputWrapper">
                 <Input
                   size="large"
@@ -48,7 +48,7 @@ export default class extends Component {
                   <IntlMessages id="page.resetPassSave" />
                 </Button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </ResetPasswordStyleWrapper>

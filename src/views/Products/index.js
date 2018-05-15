@@ -25,11 +25,11 @@ class Product extends Component {
         }
     }
     render() {
-        const { selectedId, products } = this.props;
-        const selectedProduct = selectedId ? products.filter(product => product.id === selectedId)[0] : null;    
-        const otherAttributes = null;
+        // const { selectedId, products } = this.props;
+        // const selectedProduct = selectedId ? products.filter(product => product.id === selectedId)[0] : null;    
+        // const otherAttributes = null;
 
-        Log.info(products , 'Products Component');
+        // Log.info(products , 'Products Component');
 
         return(
             <LayoutWrapper>

@@ -1,16 +1,17 @@
 import instance from './base';
+import { getToken } from '../helpers/utility';
+import Log from '../helpers/Log';
+
+const token = getToken();
+Log.info(token, 'Get Token')
+if (token)
+  instance.defaults.headers.common['x-access-token'] = token;
 
 export default {
-    getEmployees() {
-      return instance.get('employees.json')
-    },
-    getEmployee() {
+    getUser() {
       return instance.get('employee.json')
     },
-    addEmployee() {
-      return instance.post('employee.json')
-    },
-    updateEmployee() {
+    updateUser() {
       return instance.put('employee.json')
     },
     addPhone(id) {
@@ -31,7 +32,7 @@ export default {
     removeAddress(id) {
       return instance.put('employee/'+id+'/removeAddress.json')
     },
-    deleteEmployee(id) {
+    deleteUser(id) {
       return instance.delete('employee/'+id+'.json')
     },
  }

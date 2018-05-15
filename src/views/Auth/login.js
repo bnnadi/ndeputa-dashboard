@@ -61,13 +61,13 @@ class LogIn extends Component {
                 </Link>
                 </div>
 
-                <div className="isoSignInForm">
+                <form className="isoSignInForm">
                 <div className="isoInputWrapper">
-                    <Input size="large" type="email" placeholder="Username" name="email" onBlur={this.onChange} />
+                    <Input size="large" type="email" placeholder="Username" autoComplete="new-username" name="email" onBlur={this.onChange} />
                 </div>
 
                 <div className="isoInputWrapper">
-                    <Input size="large" type="password" placeholder="Password" name="password" onBlur={this.onChange} />
+                    <Input size="large" type="password" placeholder="Password" autoComplete="new-password" name="password" onBlur={this.onChange} />
                 </div>
 
                 <div className="isoInputWrapper isoLeftRightComponent">
@@ -85,7 +85,7 @@ class LogIn extends Component {
                     <IntlMessages id="page.signInForgotPass" />
                     </Link>
                 </div>
-                </div>
+                </form>
             </div>
             </div>
         </LogInStyleWrapper>
