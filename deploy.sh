@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 yarn build
-mv build/. ~/dev.denadis.com/public/dashboard/
-cd  ~/dev.denadis.com/
-pm2 restart all
+mv build/* ~/dev.denadis.com/public/dashboard/
+cd  ~/dev.denadis.com
+pm2 restart api
